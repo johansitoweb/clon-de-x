@@ -1,0 +1,56 @@
+<!DOCTYPE html>  
+<html lang="es">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">  
+    <title>Mi App Flask</title>  
+</head>  
+<body>  
+    <h1>Bienvenido a mi app Flask!</h1>  
+    <form method="POST">  
+        <input type="text" name="content" placeholder="Escribe tu mensaje" required>  
+        <button type="submit">Enviar</button>  
+    </form>  
+
+    <h2>Mensajes:</h2>  
+    <div id="messages">  
+        {% for message in messages %}  
+            <div class="card">  
+                <p>{{ message['content'] }}</p>  
+                <p>  
+                    <a href="{{ url_for('like', message_id=message['id']) }}">  
+                        ❤️ {{ message['likes'] }}  
+                    </a>  
+                </p>  
+            </div>  
+        {% endfor %}  
+    </div>  
+    <style>
+        body {  
+    font-family: Arial, sans-serif;  
+    margin: 20px;
+    background-color: rgb(4, 4, 30);  
+}  
+
+h1, h2 {  
+    color: #f1ecec;  
+}  
+
+.card {  
+    border: 1px solid #ccc;  
+    border-radius: 8px;  
+    padding: 15px;  
+    margin-bottom: 10px;  
+    background-color: #f9f9f9;  
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  
+}  
+
+input[type="text"] {  
+    width: 80%;  
+    padding: 5px;  
+
+}
+    </style>
+</body>  
+</html>
